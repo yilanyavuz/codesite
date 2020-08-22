@@ -1,0 +1,206 @@
+<%- include('ek/header', {bot, user, path}) %>
+<div class="container">
+	<div class="jumbotron">
+		<div align="center">
+      
+<% if (bot.ayar.has('kodlar')) { %>
+
+<!-- Tüm Kodlar -->
+<a class="btn btn-default" style="background-color:#7289DA; color:white; width:20%;" data-toggle="collapse" data-target="#tum">Tüm Kodlar</a>
+<div id="tum" class="collapse in">
+<div style="overflow-x:auto;">
+<table class="table" style="background-color:#fff">
+<tr>
+<th>Kod Adı</th>
+<th>Kod Linki</th>
+<th>Kod Kısası</th>
+<th>Sahip</th>
+<th>Sahip ID</th>
+<th>Değeri</th>
+<th>Id</th>
+<th>Durum</th>
+</tr>
+
+<%for(var i = 0; i < Object.keys(bot.ayar.fetch('kodlar')).length; i++) {%>
+<% let id = Object.keys(bot.ayar.fetch('kodlar'))[i] %>
+
+<td><%=bot.ayar.fetch(`kodlar.${id}.ad`)%></td>
+<td><%=bot.ayar.fetch(`kodlar.${id}.kodlink`)%></td>
+<td><%=bot.ayar.fetch(`kodlar.${id}.kodkısa`)%></td>
+<td><%=bot.ayar.fetch(`kodlar.${id}.sahip`)%></td>
+<td><%=bot.ayar.fetch(`kodlar.${id}.sahipid`)%></td>
+<td><%=bot.ayar.fetch(`kodlar.${id}.değeri`)%></td>
+<td><%=bot.ayar.fetch(`kodlar.${id}.özelid`)%></td>
+<td><%=bot.ayar.has(`kodlar.${id}.durum`) ? bot.ayar.fetch(`kodlar.${id}.durum`) : 'Beklemede'%></td>
+</tr>
+<% } %>
+
+</table>
+  </div></div>
+<br><br>
+
+<!-- Beklemede olan kodlar -->
+<a class="btn btn-default" style="background-color:#7289DA; color:white; width:25%;" data-toggle="collapse" data-target="#onaybekleyen">Beklemede Olan Kodlar</a>
+<div id="onaybekleyen" class="collapse in">
+<div style="overflow-x:auto;">
+<table class="table" style="background-color:#fff">
+<tr>
+  <th>İşlem</th>
+<th>Kod Adı</th>
+<th>Kod Linki</th>
+<th>Kod Kısası</th>
+<th>Değeri</th>
+<th>Id</th>
+</tr>
+
+<%for(var i = 0; i < Object.keys(bot.ayar.fetch('kodlar')).length; i++) {%>
+<% let id = Object.keys(bot.ayar.fetch('kodlar'))[i] %>
+<% if (bot.ayar.fetch(`kodlar.${id}.durum`) === 'Beklemede' || bot.ayar.has(`kodlar.${id}.durum`) === false) { %>
+<tr>
+<td><a class="btn btn-success" href="/kod/onayla/<%=id%>"><i class="fa fa-check" aria-hidden="true"></i> Onayla<i aria-hidden="true"></i></a>
+<a class="btn btn-danger" href="/kod/reddet/<%=id%>"><i class="fa fa-times" aria-hidden="true"></i> Reddet<i aria-hidden="true"></i></a>
+<td><%=bot.ayar.fetch(`kodlar.${id}.ad`)%></td>
+<td><%=bot.ayar.fetch(`kodlar.${id}.kodlink`)%></td>
+<td><%=bot.ayar.fetch(`kodlar.${id}.kodkısa`)%></td>
+<td><%=bot.ayar.fetch(`kodlar.${id}.değeri`)%></td>
+<td><%=bot.ayar.fetch(`kodlar.${id}.özelid`)%></td>
+</tr>
+<% } %>
+<%}%>
+</table>
+</div>
+</div>
+  <br><br>
+
+<!-- Onaylanmış Kodlar -->
+<a class="btn btn-default" data-toggle="collapse" style="background-color:#7289DA; color:white; width:20%;" data-target="#onaylı">Onaylanmış Kodlar</a>
+<div id="onaylı" class="collapse in">
+	<div style="overflow-x:auto;">
+		<table class="table" style="background-color:#fff">
+		<tr>
+      <th>İşlem</th>
+		<th>Kod Adı</th>
+		<th>Kod Linki</th>
+		<th>Kod Kısası</th>
+      <th>Değeri</th>
+<th>Id</th>
+
+		</tr>	
+      
+		<%for(var i = 0; i < Object.keys(bot.ayar.fetch('kodlar')).length; i++) {%>
+		<% let id = Object.keys(bot.ayar.fetch('kodlar'))[i] %>
+		<% if (bot.ayar.fetch(`kodlar.${id}.durum`) === 'Onaylı') { %>
+	  <tr>
+		<td><a class="btn btn-warning" href="/kod/bekleme/<%=id%>"><i class="fa fa-pause" aria-hidden="true"></i> Beklemeye Al<i aria-hidden="true"></i></a>
+		<a class="btn btn-danger" href="/kod/reddet/<%=id%>"><i class="fa fa-times" aria-hidden="true"></i> Reddet<i aria-hidden="true"></i></a>
+
+		<td><%=bot.ayar.fetch(`kodlar.${id}.ad`)%></td>
+		<td><%=bot.ayar.fetch(`kodlar.${id}.kodlink`)%></td>
+		<td><%=bot.ayar.fetch(`kodlar.${id}.kodkısa`)%></td>
+      <td><%=bot.ayar.fetch(`kodlar.${id}.değeri`)%></td>
+		<td><%=bot.ayar.fetch(`kodlar.${id}.özelid`)%></td>
+		</tr>
+		<% } %>
+		<%}%>
+		</table>
+		</div>
+</div>
+  <br><br>
+
+<!-- Reddedilmiş Kodlar -->
+<a class="btn btn-default" data-toggle="collapse" style="background-color:#7289DA; color:white; width:20%;" data-target="#onaysız">Reddedilmiş Kodlar</a>
+<div id="onaysız" class="collapse in">
+	<div style="overflow-x:auto;">
+		<table class="table" style="background-color:#fff">
+		<tr>
+		<th>İşlem</th>
+		<th>Kod Adı</th>
+		<th>Kod Linki</th>
+		<th>Kod Kısası</th>
+      <th>Değeri</th>
+<th>Id</th>
+		</tr>	
+		<%for(var i = 0; i < Object.keys(bot.ayar.fetch('kodlar')).length; i++) {%>
+		<% let id = Object.keys(bot.ayar.fetch('kodlar'))[i] %>
+      <% console.log(id) %>
+		<% if (bot.ayar.fetch(`kodlar.${id}.durum`) === 'Reddedilmiş') { %>
+		<tr>
+		<td><a class="btn btn-success" href="/kod/onayla/<%=id%>"><i class="fa fa-check" aria-hidden="true"></i> Onayla<i aria-hidden="true"></i></a>
+		<a class="btn btn-warning" href="/kod/bekleme/<%=id%>"><i class="fa fa-pause" aria-hidden="true"></i> Beklemeye Al<i aria-hidden="true"></i></a>
+		<td><%=bot.ayar.fetch(`kodlar.${id}.ad`)%></td>
+		<td><%=bot.ayar.fetch(`kodlar.${id}.kodlink`)%></td>
+		<td><%=bot.ayar.fetch(`kodlar.${id}.kodkısa`)%></td>
+      <td><%=bot.ayar.fetch(`kodlar.${id}.değeri`)%></td>
+		<td><%=bot.ayar.fetch(`kodlar.${id}.özelid`)%></td>
+		</tr>
+		<% } %>
+		<%}%>
+		</table>
+		</div>
+</div>
+  <br><br>
+
+<% } else {%>
+<h5 style="color:#fff">
+Sistemde hiç kod bulunmuyor.
+</h5>
+<% } %>
+
+</div>
+</div>
+</div>
+</div></div><div></div>
+<style>
+.table th, .table td {
+    background-color: #282828;
+}
+.btn { 
+    font-weight: 500;
+    padding: 0.4rem 2rem;
+    border-radius:4px;
+}
+a.btn{
+padding: .4rem 1rem;
+  }
+.btn-success {
+color:white;
+background-color:green;
+border-color:green;
+  }
+.btn-success:hover {
+background-color:green;
+border-color:green;
+-webkit-box-shadow: 8px 4px 12px 1px rgba(0,0,0,0.43); 
+box-shadow: 8px 4px 12px 1px rgba(0,0,0,0.43);
+  }
+.btn-warning {
+   background-color:darkorange;
+   border-color:darkorange;
+  }
+.btn-warning:hover {
+   background-color:darkorange;
+   border-color:darkorange;
+-webkit-box-shadow: 8px 4px 12px 1px rgba(0,0,0,0.43); 
+box-shadow: 8px 4px 12px 1px rgba(0,0,0,0.43);
+  }
+.btn-primary {
+background-color:#0959B5;
+border-color:#0959B5;
+  }
+.btn-primary:hover {
+background-color:#0959B5;
+border-color:#0959B5;
+-webkit-box-shadow: 8px 4px 12px 1px rgba(0,0,0,0.43); 
+box-shadow: 8px 4px 12px 1px rgba(0,0,0,0.43);
+  }
+.btn-danger {
+background-color:#BF1507;
+border-color:#BF1507;
+  }
+.btn-danger:hover {
+background-color:#BF1507;
+border-color:#BF1507;
+-webkit-box-shadow: 8px 4px 12px 1px rgba(0,0,0,0.43); 
+box-shadow: 8px 4px 12px 1px rgba(0,0,0,0.43);
+  }
+</style>

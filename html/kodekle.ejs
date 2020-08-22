@@ -1,0 +1,59 @@
+<%- include('ek/header', {bot, user, path}) %>
+<br>
+<div class="container is-fullhd">
+	<div class="row justify-content-md-center">
+
+		<h2 style="color: #ffffff;">Kod Ekleme</h2>
+	</div>
+ <form method="post">
+				
+   <div align="center" class="jumbotron" style="color:#fff; font-size:20px;">
+     <br>
+		<div><i aria-hidden="true"></i>Kod Adı <a style="color:red">*</a></div>
+		<div>
+      <input type="text" style="text-align: center;" name="kodad" id="kodad"
+									placeholder="Örneğin; Ototag" required="required">
+     </div>
+   <br>
+		<div><i aria-hidden="true"></i>Kod Link <a style="color:red">*</a></div>
+		<div>
+      <input type="text" style="text-align: center;" name="kodlink" id="kodlink"
+									placeholder="hasteb.in link koymazsanız kabul edilmez!" required="required">
+     </div>
+     <br>
+          <div><i aria-hidden="true"></i>Değeri <a style="color:red">*</a></div>
+    <div class="select-style">
+     <select id="deger" name="deger" required="required">
+       <option disabled selected>Kod Değeri (Ekip tarafından değiştirilebilir, altyapı ise altyapıları seçin!)</option>
+       
+          <option value="bronze" >Bronz JS</option>
+        
+          <option value="silver" >Silver JS</option>
+        
+          <option value="gold" >Gold JS</option>
+       
+       <option value="alt" >Altyapı</option>
+        
+          <option value="altp" >Altyapı Plus</option>
+
+     </select>
+     </div>
+     <br>
+     <div><i aria-hidden="true"></i>Kısa Açıklama <a style="color:red">*</a></div>
+		<div>
+      <textarea style="text-align: center; background-color:#222; hight:100px" name="kısaaçıklama" id="kısaaçıklama"
+                placeholder="Kodun kısa açıklaması, örneğin; üyelerin adına belirlenen tagı koymaya yarar." maxlenght="30" required="required"></textarea>
+     </div>
+
+				<div style="width: 100%; text-align: center; margin-top: 20px;">
+					<button style="border-radius: 4px;width: 20%;height: 40px;font-size: 15px;background-color:#0959B5;" type="submit" class="btn btn-primary"><i class="fa fa-paper-plane" aria-hidden="true"></i> Kodu Gönder</button>
+				</div>
+   </div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+<style>
+
+</style>

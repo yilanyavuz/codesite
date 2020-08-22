@@ -1,0 +1,147 @@
+<%- include('ek/header', {bot, user, path}) %>
+<div class="container">
+  
+	 <div class="jumbotron">
+		<div align="center">
+			<img style="width:21%;height:18%;border-radius:50%;" class="logo" src="https://cdn.discordapp.com/attachments/681083467248697380/696055534025048114/PLAGUE_CODE.png?size=2048" width="180px" height="180px" class="d-inline-block align-top rounded-circle" alt=""><br><br>
+      <h3><b>#PlagueCode</b></h3>
+					<p style="font-size:15px; color:lightgrey"><br></p><br>
+<button class="glow-on-hover" type="button">
+    <a href="/hakkimizda"style="text-decoration:none;" ><i class="fa fa-info-circle"></i> Hakkımızda</a>
+      </button>
+   <br>
+<br>
+      
+
+    </div>
+    </div>
+
+ 
+
+  
+  <div class="row">
+
+</div></div></div>
+<style>
+@import url(https://fonts.googleapis.com/css?family=Lato);
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css);
+.btn {
+ border-radius:20px;
+ box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12),
+            0 2px 4px 0 rgba(0,0,0,0.08);
+  }
+.glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.logo{
+  -webkit-transition:all 0.5s ease-out;
+  -moz-transition:all 0.5s ease-out;
+  -ms-transition:all 0.5s ease-out;
+  -o-transition:all 0.5s ease-out;
+  transition:all 0.5s ease-out;
+}
+
+.logo:hover {
+  -webkit-transform:scale(.7);
+  -moz-transform:scale(.7);
+  -ms-transform:scale(.7);
+  -o-transform:scale(.7);
+  transform:scale(.7);
+}
+.button_slide {
+  color: #FFF;
+  border: 2px solid #f12ad3;
+  border-radius: 8px;
+  padding: 5px 5px;
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 #f12ad3;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+
+.slide_down:hover {
+  box-shadow: inset 0 100px 0 0 #f12ad3;
+}
+
+.slide_right:hover {
+  box-shadow: inset 400px 0 0 0 #f12ad3;
+}
+
+.slide_left:hover {
+  box-shadow: inset 0 0 0 50px #f12ad3;
+}
+
+.slide_diagonal:hover {
+  box-shadow: inset 400px 50px 0 0 #f12ad3;
+}
+
+#outer {
+  width: 364px;
+  margin: 50px auto 0 auto;
+  text-align: center;
+}
+</style>
+<script>
+</script>
